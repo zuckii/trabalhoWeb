@@ -10,7 +10,7 @@ app = Flask(__name__)
 def homepage():
     # 3. Esta função é executada quando alguém acessa a rota '/'
     # O que ela retornar será exibido no navegador.
-    return 'Olá, reviewhuaaaaaaaaaaab! Esta é a homepage do meu app.'
+    return 'Olá, reviewhub! Esta é a homepage do meu app.'
 
 
 # 4. Você pode criar quantas rotas quiser
