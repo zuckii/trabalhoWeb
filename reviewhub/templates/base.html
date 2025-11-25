@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ReviewHub{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('home.homepage') }}">Home</a>
+    <a href="{{ url_for('movies.details', id=1) }}">Filmes</a>
+
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('auth.logout') }}">Sair</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Entrar</a>
+            <a href="{{ url_for('auth.register') }}">Cadastrar</a>
+        {% endif %}
+    </nav>
+
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
