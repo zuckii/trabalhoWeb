@@ -14,14 +14,16 @@
     {% if not request.endpoint or not request.endpoint.startswith('auth') %}
     <header class="site-nav">
         <div class="container">
-            <a class="brand" href="{{ url_for('home.homepage') }}">ReviewHub</a>
+            <p><a class="brand" href="{{ url_for('home.homepage') }}">Review<span>Hub</span></a></p>
             <nav>
-                {% if session.get('user_id') or session.get('guest_mode') %}
-                    <a href="{{ url_for('auth.logout') }}" class="btn">Sair</a>
-                {% else %}
-                    <a href="{{ url_for('auth.login') }}">Entrar</a>
-                    <a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a>
-                {% endif %}
+                <ul>
+                    {% if session.get('user_id') or session.get('guest_mode') %}
+                        <li><a href="{{ url_for('auth.logout') }}" class="btn">Sair</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">Entrar</a></li>
+                        <li><a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a></li>
+                    {% endif %}
+                </ul>
             </nav>
         </div>
     </header>

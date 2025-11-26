@@ -5,6 +5,10 @@
 {% block content %} 
 
 <h1>Detalhes do Filme {{ movie_id }}</h1>
-<a href="/movies/{{ movie_id }}/review">Avaliar</a>
-<a href="/">Voltar para a Home</a>
+<nav>
+    <ul>
+        <li><a href="/movies/{{ movie_id }}/review">Avaliar</a></li>
+        <li><a href="{{ url_for('home.homepage') }}">Voltar para a Home</a></li>
+    </ul>
+</nav>
 {% endblock %}
