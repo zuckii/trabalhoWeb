@@ -8,7 +8,10 @@
 }
 
 @media (max-width: 480px) {
-    .site-footer { margin-top: 2rem; padding: 0.6rem 0; }
+    .site-footer { 
+        margin-top: 2rem; 
+        padding: 0.6rem 0; 
+    }
 }
 
 .site-footer .container {
@@ -22,7 +25,9 @@
 }
 
 @media (max-width: 480px) {
-    .site-footer .container { gap: 0.35rem; }
+    .site-footer .container { 
+        gap: 0.35rem; 
+    }
 }
 
 .site-footer nav ul {
@@ -33,7 +38,11 @@
     gap: 0.5rem;
 }
 
-@media (max-width: 480px) { .site-footer nav ul { gap: 0.4rem; } }
+@media (max-width: 480px) { 
+    .site-footer nav ul { 
+        gap: 0.4rem; 
+    } 
+}
 
 .site-footer nav li a {
     text-decoration: none;
@@ -42,7 +51,9 @@
     transition: color var(--tp);
 }
 
-.site-footer nav li a:hover { color: var(--accent); }
+.site-footer nav li a:hover { 
+    color: var(--accent); 
+}
 
 .site-footer p {
     font-size: 0.75rem;

@@ -1,24 +1,40 @@
 /* Form Styles */
-/* Auth container: centered card-like form for login/register pages */
 .auth-container {
-    max-width: 500px;
+    max-width: 600px;
+    width: 600px;
     margin: 2.5rem auto;
-    padding: 2rem 5rem;
+    padding: 2rem 7rem;
     background: white;
     border-radius: calc(var(--radius) * 1.15);
     box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
     border: 1px solid rgba(15,23,42,0.04);
 }
 
-@media (max-width: 768px) { .auth-container { margin: 1.5rem auto; padding: 1.5rem; } }
-@media (max-width: 480px) {
-    .auth-container { padding: 1.25rem; margin: 1rem auto; width: 92%; }
+@media (max-width: 768px) { 
+    .auth-container { 
+        margin: 1.5rem auto; 
+        padding: 1.5rem; 
+    } 
 }
 
-/* Vertical centering on auth pages */
-.auth-main { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 140px); }
+@media (max-width: 480px) {
+    .auth-container { 
+        padding: 1.25rem; 
+        margin: 1rem auto; 
+        width: 92%; 
+    }
+}
 
-/* Brand and headings */
+
+.auth-main { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 
+    calc(100vh - 140px); 
+}
+
+
 .auth-container h1 {
     margin: 0 0 0.5rem 0;
     font-size: 2rem;
@@ -33,7 +49,11 @@
 }
 
 /* Form */
-.auth-form { margin-top: 0.5rem; display: flex; flex-direction: column; }
+.auth-form { 
+    margin-top: 0.5rem; 
+    display: flex; 
+    flex-direction: column; 
+}
 
 .auth-form input,
 .auth-form textarea {
@@ -46,30 +66,80 @@
     font-size: 0.95rem;
 }
 
-.auth-form input::placeholder { color: #9ca3af; }
+.auth-form input::placeholder { 
+    color: #9ca3af; 
+}
 
-.auth-form input:focus { border-color: var(--accent); box-shadow: 0 6px 24px rgba(59,130,246,0.06); outline: none; }
+.auth-form input:focus { 
+    border-color: var(--accent); 
+    box-shadow: 0 6px 24px rgba(59,130,246,0.06); 
+    outline: none; 
+}
 
-/* Make primary button full-width and prominent */
-.auth-form .btn { width: 100%; padding: 0.9rem; font-size: 1rem; display: inline-block; margin-top: 0.75rem; }
 
-/* Secondary links under the form */
-.auth-links { margin-top: 1rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
-.auth-links a { color: var(--accent); text-decoration: none; font-weight: 600; }
-.auth-links a:hover { color: var(--accent-600); }
-.auth-links .guest-link { color: var(--muted); font-weight: 500; }
-.auth-links .guest-link:hover { color: var(--accent); }
+.auth-form .btn { 
+    width: 100%; 
+    padding: 0.9rem; 
+    font-size: 1rem; 
+    display: inline-block; 
+    margin-top: 0.75rem; 
+}
 
-/* Small helper text */
-.auth-footer { margin-top: 1.25rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
 
-/* Accessibility: focus states */
-.auth-form .btn:focus, .auth-form input:focus { box-shadow: 0 0 0 4px rgba(59,130,246,0.08); }
+.auth-links { 
+    margin-top: 1rem; 
+    text-align: center; 
+    color: var(--muted); 
+    font-size: 0.95rem; 
+}
 
-/* Preserve textarea behavior */
-textarea { resize: vertical; min-height: 120px; }
+.auth-links a { 
+    color: var(--accent); 
+    text-decoration: none; 
+    font-weight: 600; 
+}
 
-/* Form group (if used) */
-.form-group { margin-bottom: 1.25rem; }
+.auth-links a:hover { 
+    color: var(--accent-600); 
+}
 
-.form-group label { display: block; font-size: 0.9rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem; }
+.auth-links .guest-link { 
+    color: var(--muted); 
+    font-weight: 500; 
+}
+
+.auth-links .guest-link:hover { 
+    color: var(--accent); 
+}
+
+
+.auth-footer { 
+    margin-top: 1.25rem; 
+    font-size: 0.85rem; 
+    color: var(--muted); 
+    text-align: center; 
+}
+
+
+.auth-form .btn:focus, .auth-form input:focus { 
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.08); 
+}
+
+
+textarea { 
+    resize: vertical; 
+    min-height: 120px; 
+}
+
+
+.form-group { 
+    margin-bottom: 1.25rem; 
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 0.9rem; 
+    font-weight: 500; 
+    color: #374151; 
+    margin-bottom: 0.5rem; 
+}

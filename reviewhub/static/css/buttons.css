@@ -1,4 +1,3 @@
-/* Button Styles */
 .btn, .movie-btn {
     background: var(--accent);
     color: white;
@@ -17,14 +16,19 @@
 }
 
 @media (max-width: 480px) {
-    .btn, .movie-btn { padding: 0.65rem 1.25rem; font-size: 0.85rem; }
+    .btn, .movie-btn { 
+        padding: 0.65rem 1.25rem; 
+        font-size: 0.85rem; 
+    }
 }
 
-/* Movie Button Specific */
+
 .movie-btn {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
     white-space: nowrap;
 }
 
-.movie-btn:active { transform: scale(0.95); }
+.movie-btn:active { 
+    transform: scale(0.95); 
+}

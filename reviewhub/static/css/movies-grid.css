@@ -18,25 +18,34 @@ main {
 }
 
 @media (max-width: 1024px) {
-    .movies-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .movies-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 1.5rem; }
 }
 
 @media (max-width: 768px) {
-    .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .movies-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 1.25rem; }
 }
 
 @media (max-width: 480px) {
-    .movies-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .movies-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1rem; }
 }
 
-/* Movie Card Container */
+
 .movie-card {
     text-decoration: none;
     color: inherit;
     transition: transform var(--tp), box-shadow var(--tp);
 }
 
-.movie-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.movie-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: var(--shadow); 
+}
 
 /* Movie Poster */
 .movie-poster {
@@ -59,7 +68,10 @@ main {
 }
 
 @media (max-width: 480px) {
-    .movie-poster { max-width: 200px; margin: 0 auto; }
+    .movie-poster { 
+        max-width: 200px; 
+        margin: 0 auto; 
+    }
 }
 
 /* Movie Overlay */
@@ -77,7 +89,11 @@ main {
     transition: opacity var(--tp);
 }
 
-.movie-card:hover .movie-overlay { opacity: 1; }
+.movie-card:hover .movie-overlay { 
+    opacity: 1; 
+}
 
-/* Movie Title: hidden in grid as requested */
-.movie-title { display: none !important; }
+
+.movie-title { 
+    display: none !important; 
+}
