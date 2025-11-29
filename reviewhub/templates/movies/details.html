@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/review-form.css') }}">
 
 <div class="review-container">
-    <h1>{{ movie.title }}</h1>
+    <h1>{{ movie.nome }}</h1>
 
     <div class="review-content">
-        <img src="{{ movie.poster }}" alt="Poster do Filme" class="movie-poster">
+        <img src="{{ movie.imagem }}" alt="Poster do Filme" class="movie-poster">
 
         <form method="POST" class="review-form">
             <div class="star-rating">

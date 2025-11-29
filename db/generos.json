@@ -1,0 +1,15 @@
+[
+    {"nome": "Ficção"},
+    {"nome": "Ação"},
+    {"nome": "Crime"},
+    {"nome": "Suspense"},
+    {"nome": "Drama"},
+    {"nome": "Animação"},
+    {"nome": "Biografia"},
+    {"nome": "Fantasia"},
+    {"nome": "Romance"},
+    {"nome": "Terror"},
+    {"nome": "Mistério"},
+    {"nome": "Comédia"},
+    {"nome": "Guerra"}
+]
