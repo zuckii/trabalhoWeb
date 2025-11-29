@@ -24,11 +24,11 @@
             <p><a class="brand" href="{{ url_for('home.homepage') }}">Review<span>Hub</span></a></p>
             <nav>
                 <ul>
-                    {% if session.get('user_id') or session.get('guest_mode') %}
+                    {% if session.get('user_id') %}
                         <li><a href="{{ url_for('auth.logout') }}" class="btn">Sair</a></li>
-
-                    <!-- Temos que permitir que o home seja possível de acessar sem login, aí teremos esse nav. 
-                    Caso contrário essa condição nunca existirá -->
+                    {% elif session.get('guest_mode') %}
+                        <!-- Guest users are not registered; show Entrar so they can log in/register -->
+                        <li><a href="{{ url_for('auth.login') }}" class="btn">Entrar</a></li>
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}">Entrar</a></li>
                         <li><a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a></li>
