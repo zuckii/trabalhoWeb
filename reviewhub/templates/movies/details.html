@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Detalhes do Filme {{ movie_id }} - ReviewHub{% endblock %}
+{% block title %}Avaliar Filme {{ movie_id }}{% endblock %}
 
-{% block content %} 
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/review-form.css') }}">
 
-<h1>Detalhes do Filme {{ movie_id }}</h1>
-<nav>
-    <ul>
-        <li><a href="/movies/{{ movie_id }}/review">Avaliar</a></li>
-        <li><a href="{{ url_for('home.homepage') }}">Voltar para a Home</a></li>
-    </ul>
-</nav>
+<div class="review-container">
+    <h1>{{ movie.title }}</h1>
+
+    <div class="review-content">
+        <img src="{{ movie.poster }}" alt="Poster do Filme" class="movie-poster">
+
+        <form method="POST" class="review-form">
+            <div class="star-rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <textarea name="review" placeholder="Escreva sua avaliação aqui..." required></textarea>
+            <input type="hidden" name="rating" id="rating-input" value="">
+            <button class="btn" type="submit">Enviar Avaliação</button>
+        </form>
+    </div>
+
+    <p><a href="{{ url_for('home.homepage') }}">Cancelar</a></p>
+</div>
+
+<script src="{{ url_for('static', filename='js/review-form.js') }}"></script>
 {% endblock %}
