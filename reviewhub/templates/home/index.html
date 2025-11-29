@@ -13,9 +13,7 @@
     <a href="{{ url_for('movies.details', id=movie.id) }}" class="movie-card">
         <div class="movie-poster">
             <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy">
-            <div class="movie-overlay">
-                <button class="movie-btn">Avaliar</button>
-            </div>
+            <div class="movie-overlay"></div>
         </div>
         <h3 class="movie-title">{{ movie.title }}</h3>
     </a>
