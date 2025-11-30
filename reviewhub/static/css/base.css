@@ -92,3 +92,14 @@ p {
 .text-center { 
     text-align: center; 
 }
+
+.username {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

@@ -1,21 +1,3 @@
-/* =========================================
-   Review Page Styles (Light Mode / Standard)
-   Arquivo: static/css/review-page.css
-   ========================================= */
-
-:root {
-    --gold: #fbbf24;       /* Amarelo Ouro */
-    --gold-hover: #f59e0b; /* Amarelo mais escuro */
-    --gray-star: #cbd5e1;  /* Cinza para estrela vazia */
-    --text-main: #1f2937;  /* Texto principal */
-    --text-muted: #6b7280; /* Texto secundário */
-    --border: #e5e7eb;     /* Bordas sutis */
-    --bg-card: #ffffff;    /* Fundo dos cards */
-    --primary-btn: #007BFF;
-    --primary-btn-hover: #0056b3;
-}
-
-/* Container Principal - Respeita o fundo do base.css */
 .review-page-wrapper {
     width: 100%;
     min-height: 100vh;
@@ -103,7 +85,7 @@
 /* =========================================
    2. SISTEMA DE ESTRELAS (Simplificado)
    ========================================= */
-/* review.css */
+
 .rating-box {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -163,64 +145,22 @@
 /* =========================================
    3. FORMULÁRIO & BOTÕES
    ========================================= */
-.review-form textarea {
-    width: 100%;
-    min-height: 180px;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
-    resize: vertical;
-    background: #fff;
-    color: var(--text-main);
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
 
-.review-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-btn);
-    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
-}
 
-.action-bar {
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
 
-.btn-submit {
-    background-color: var(--primary-btn);
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.btn-submit:hover {
-    background-color: var(--primary-btn-hover);
-    transform: translateY(-1px);
-}
-
-.btn-cancel {
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    text-decoration: none;
+    margin-top: 0.5rem;
     font-weight: 500;
-    transition: color 0.2s;
 }
 
-.btn-cancel:hover {
-    color: var(--text-main);
-    text-decoration: underline;
-}
+
+
+
+
+
 
 /* =========================================
    4. SEÇÃO DE REVIEWS (LISTA)
@@ -286,11 +226,6 @@
     margin-bottom: 1rem;
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
 
 .avatar {
     width: 40px;
@@ -305,10 +240,6 @@
     font-size: 1.1rem;
 }
 
-.username {
-    font-weight: 600;
-    color: var(--text-main);
-}
 
 .rating-badge {
     color: var(--gold);
@@ -331,6 +262,19 @@
     font-style: italic;
     border: 2px dashed var(--border);
     border-radius: 8px;
+}
+
+
+.text-error {
+    color: #dc2626 !important; /* Vermelho forte */
+    font-weight: 800 !important;
+    animation: shake 0.4s ease-in-out; /* Opcional: faz o texto tremer */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 /* =========================================
