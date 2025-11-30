@@ -15,8 +15,18 @@ def create_app():
     app.register_blueprint(home_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(movies_bp)
-    
 
+    # Configs para nao consumir cache
+    @app.after_request
+    def no_cache(response):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = 0
+        return response
+    
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+    
     # Make request available in all templates
     @app.context_processor
     def inject_request():

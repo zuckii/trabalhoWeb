@@ -16,15 +16,15 @@ def login():
     user = get_user_by_username(username)
 
     if not username or not senha:
-        flash("Preencha todos os campos.")
+        flash("Preencha todos os campos.", "nok")
         return redirect(url_for("auth.login_page"))
     
     if user is None:
-        flash("Usuário não encontrado.")
+        flash("Usuário não encontrado.", "nok")
         return redirect(url_for("auth.login_page"))
 
     if not verifica_senha(user["senha"], senha):
-        flash("Senha incorreta.")
+        flash("Senha incorreta.", "nok")
         return redirect(url_for("auth.login_page"))
 
     session["user_id"] = user["id"]
@@ -46,19 +46,19 @@ def register():
     senha = request.form.get("password")
 
     if not nome or not username or not senha:
-        flash("Preencha todos os campos.")
+        flash("Preencha todos os campos.", "nok")
         return redirect(url_for("auth.register_page"))
 
     existe = get_userId_by_username(username)
 
     if existe:
-        flash("Já existe um usuário com esse username.")
+        flash("Já existe um usuário com esse username.", "nok")
         return redirect(url_for("auth.register_page"))
 
     senha = hash_senha(senha)
     insert_user(nome, username, senha)
 
-    flash("Cadastro realizado com sucesso! Faça login.")
+    flash("Cadastro realizado com sucesso! Faça login.", "ok")
     return redirect(url_for("auth.login_page"))
 
 

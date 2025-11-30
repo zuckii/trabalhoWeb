@@ -4,20 +4,20 @@
 
 {% block content %}
     <div class="auth-container">
-        <h1>ReviewHub</h1>
+        <h1 class="title-from">Review<span>Hub</span></h1>
         <form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
             <input name="username" required placeholder="Username">
             <input name="password" required placeholder="Senha" type="password">
 
-            {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
                     <ul class="flash-messages">
                         {% for msg in messages %}
-                            <li>{{ msg }}</li>
+                            <li class="{{msg[0]}}">{{ msg[1] }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
-            {% endwith %}            
+            {% endwith %}
 
             <button type="submit" class="btn">Entrar</button>
         </form>

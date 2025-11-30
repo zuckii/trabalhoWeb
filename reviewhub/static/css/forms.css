@@ -143,3 +143,7 @@ textarea {
     color: #374151; 
     margin-bottom: 0.5rem; 
 }
+
+.title-from:hover span{
+    color: var(--accent-600);
+}
