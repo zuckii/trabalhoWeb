@@ -122,3 +122,42 @@
     box-shadow: 0 0 0 4px rgba(59,130,246,0.08);
     outline: none;
 }
+
+.action-bar {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-submit {
+    background-color: var(--primary-btn);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-btn-hover);
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.btn-cancel:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}

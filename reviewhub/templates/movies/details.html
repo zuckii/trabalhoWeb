@@ -49,8 +49,15 @@
 
 
                 <div class="form-group">
-                    <textarea name="review" placeholder="Escreva sua análise..." required></textarea>
-                </div>
+                    <textarea 
+                        id="review-text" 
+                        name="review" 
+                        placeholder="Escreva sua análise..." 
+                        maxlength="1000" 
+                        required
+                    ></textarea>
+                <div id="char-counter" class="char-counter">0 / 1000</div>
+            </div>
 
                 <div class="action-bar">
                     <button type="submit" class="btn-submit">
