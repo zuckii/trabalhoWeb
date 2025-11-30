@@ -9,10 +9,7 @@ def details(id):
     # A pagina details necessita de login.
     # Nem guest mode pode acessar a página details 
     if not session.get('user_id'):
-        flash("Para avaliar é necessário realizar login.")
-        return redirect(url_for('auth.login_page'))
-
-    if not session.get('guest_mode'):
+        # If user_id is not in session, require login. Guests are not allowed.
         flash("Para avaliar é necessário realizar login.")
         return redirect(url_for('auth.login_page'))
 
