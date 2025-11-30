@@ -22,7 +22,6 @@
     }
 }
 
-
 .movie-btn {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
@@ -31,4 +30,38 @@
 
 .movie-btn:active { 
     transform: scale(0.95); 
+}
+
+/* --- Review Page Specific Buttons --- */
+.btn-submit {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color var(--tp), transform var(--tp);
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-600);
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--tp);
+    margin-left: 1rem; /* Pequeno espaçamento lateral */
+}
+
+.btn-cancel:hover {
+    color: #111827;
+    text-decoration: underline;
 }

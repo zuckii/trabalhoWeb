@@ -1,33 +1,16 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const stars = document.querySelectorAll('.rating span');
-  const ratingInput = document.getElementById('rating-input');
+document.addEventListener('DOMContentLoaded', () => {
+    const inputs = document.querySelectorAll('.stars input');
+    const ratingText = document.getElementById('rating-text');
 
-  function setRating(value) {
-    ratingInput.value = value;
-    stars.forEach(s => {
-      const v = parseInt(s.getAttribute('data-value'));
-      if (v <= value) s.style.color = '#ffd166'; else s.style.color = 'rgba(255,255,255,0.35)';
-    });
-  }
-
-  stars.forEach(s => {
-    s.addEventListener('mouseenter', () => {
-      const hoverVal = parseInt(s.getAttribute('data-value'));
-      stars.forEach(ss => {
-        const v = parseInt(ss.getAttribute('data-value'));
-        ss.style.color = v <= hoverVal ? '#ffd166' : 'rgba(255,255,255,0.35)';
-      });
-    });
-
-    s.addEventListener('mouseleave', () => {
-      setRating(parseInt(ratingInput.value) || 0);
-    });
-
-    s.addEventListener('click', () => {
-      setRating(parseInt(s.getAttribute('data-value')));
-    });
-  });
-
-  // initialize
-  setRating(parseInt(ratingInput.value) || 0);
+    if(inputs.length > 0) {
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                const label = document.querySelector(`label[for="${input.id}"]`);
+                if(label) {
+                    ratingText.textContent = label.getAttribute('title');
+                    ratingText.style.color = '#eab308'; // Amarelo escuro para leitura no branco
+                }
+            });
+        });
+    }
 });
