@@ -95,116 +95,64 @@
     color: var(--text-muted);
     font-weight: 500;
 }
-
 /* =========================================
-   2. SISTEMA DE ESTRELAS (Rating System)
+   2. SISTEMA DE ESTRELAS (Simplificado)
    ========================================= */
+/* review.css */
 .rating-box {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
+
 .stars {
     display: flex;
-    flex-direction: row-reverse;
+    gap: 4px; /* Espaço fixo entre as caixas das estrelas */
+    cursor: pointer;
+    /* Garante alinhamento vertical perfeito */
+    align-items: center; 
     justify-content: center;
-    border: none;
-    gap: 0; /* Garante que não haja espaço extra entre as metades */
 }
 
-.stars input { display: none; }
-.stars label {
-    /* Configurações de tamanho (Mantendo a correção da "perninha") */
-    cursor: pointer;
-    font-size: 3.5rem;
-    color: var(--gray-star); /* Cinza padrão */
-    width: 30px;
-    height: 70px;
+.star {
+    /* 1. CAIXA RÍGIDA: Tamanho fixo que nunca muda */
+    width: 56px;  
+    height: 56px;
+    
+    /* 2. CENTRALIZAÇÃO ABSOLUTA: O ícone fica flutuando no meio da caixa */
     display: flex;
     align-items: center;
-    overflow: hidden;
-    position: relative;
-    margin: 0;
-    transition: color 0.2s, transform 0.1s;
-}
-
-/* Ícone da Estrela */
-.stars label::before {
-    content: '\f005';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    display: block;
-    position: absolute;
-    left: 0;
-    width: 60px;
-    height: 100%;
-    line-height: 70px;
-    text-align: center;
-}
-.stars label.full::before { left: -30px; }
-
-
-/* --- A LÓGICA DO HOVER (O que você pediu) --- */
-
-/* 2. Estado CHECKED (Nota Fixa) 
-   Se tiver uma nota marcada, ela e as anteriores ficam douradas. */
-.stars input:checked ~ label {
-    color: var(--gold);
-}
-
-/* 3. O TRUQUE: Reset ao passar o mouse no CONTAINER 
-   Assim que o mouse entra na área das estrelas, ignoramos o checked 
-   e pintamos tudo de cinza para preparar a "nova" pintura do hover. */
-.stars:hover label {
-    color: var(--gray-star) !important;
-}
-
-/* 4. PINTURA DO HOVER 
-   Agora pintamos de dourado apenas a estrela focada e as anteriores.
-   Como usamos !important, isso ganha da regra 3. */
-.stars label:hover,
-.stars label:hover ~ label {
-    color: var(--gold-hover) !important;
+    justify-content: center;
     
-    /* Um leve brilho para feedback visual */
-    filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.4));
-    transform: scale(1.1); /* Leve zoom na seleção */
+    /* 3. ESTABILIDADE: Impede qualquer mudança de tamanho */
+    flex-shrink: 0;
+    box-sizing: border-box;
+    
+    /* Estilo do Ícone */
+    font-size: 3rem;
+    color: var(--gray-star);
+    
+    /* Apenas a cor muda, nada de transform/scale/padding */
+    transition: color 0.1s ease;
 }
 
-/* Ajuste da metade direita (Full/Par) */
-.stars label.full::before {
-    /* Desloca exatamente a largura do label (30px) para a esquerda */
-    left: -30px; 
+/* Remove qualquer margem ou padding que o navegador possa adicionar ao ícone */
+.star::before {
+    margin: 0;
+    padding: 0;
 }
-
-/* --- Efeitos de Seleção e Hover --- */
-.stars input:checked ~ label,
-.stars label:hover,
-.stars label:hover ~ label {
-    color: var(--gold);
-}
-
-.stars label:hover,
-.stars label:hover ~ label {
-    color: var(--gold-hover);
-    transform: scale(1.1); /* Leve zoom ao passar o mouse */
-}
-
 .rating-text {
-    margin-top: 1rem;
     font-size: 1rem;
     color: var(--text-muted);
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 /* =========================================
