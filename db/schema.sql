@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Filmes (
 CREATE TABLE IF NOT EXISTS Avaliacao (
     usuario_id INTEGER NOT NULL,
     filme_id INTEGER NOT NULL,
-    nota INTEGER CHECK(nota BETWEEN 0 AND 5),
+    nota REAL CHECK(nota >= 0 AND nota <=5),
     comentario TEXT,
     PRIMARY KEY (usuario_id, filme_id),
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id),

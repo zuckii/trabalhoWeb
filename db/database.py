@@ -124,3 +124,11 @@ def get_movies_by_genre(genero):
 def get_all_genres():
     db = get_db()
     return db.execute("SELECT * FROM Genero ORDER BY nome ASC").fetchall()
+
+def insert_review(usuario_id, filme_id, nota, comentario):
+    db = get_db()
+    db.execute("""
+        INSERT OR REPLACE INTO Avaliacao (usuario_id, filme_id, nota, comentario)
+        VALUES (?, ?, ?, ?)
+    """, (usuario_id, filme_id, nota, comentario))
+    db.commit()

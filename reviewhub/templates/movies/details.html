@@ -18,7 +18,7 @@
         <div class="content-column">
             <header class="movie-header">
                 <h1 class="movie-title">{{ movie.nome }}</h1>
-                <span class="movie-meta">Qual sua avaliação para esse filme?</span>
+                <span class="movie-meta">Qual sua nota para este filme?</span>
             </header>
 
             <form method="POST" class="review-form" id="reviewForm">
@@ -36,6 +36,18 @@
                     
                     <div id="rating-text" class="rating-text">Selecione uma nota</div>
                 </div>
+
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        <ul class="flash-messages">
+                            {% for msg in messages %}
+                                <li class="{{msg[0]}}">{{ msg[1] }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+
+
                 <div class="form-group">
                     <textarea name="review" placeholder="Escreva sua análise..." required></textarea>
                 </div>

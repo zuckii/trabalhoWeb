@@ -20,9 +20,19 @@
 </form>
 <p id="subtitle-movie">Selecione um filme para avaliar</p>
 
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for msg in messages %}
+                <li class="{{msg[0]}}">{{ msg[1] }}</li>
+                {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
 <div class="movies-grid">
     {% for movie in movies %}
-    <a href="{{ url_for('movies.details', id=movie.id) }}" class="movie-card">
+    <a href="{{ url_for('movies.details_page', id=movie.id) }}" class="movie-card">
         <div class="movie-poster">
             <img src="{{ movie.imagem }}" alt="{{ movie.nome }}" loading="lazy">
             <div class="movie-overlay"></div>
