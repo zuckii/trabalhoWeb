@@ -83,14 +83,13 @@
                 <article class="review-card">
                     <div class="card-header">
                         <div class="user-info">
-                            <div class="avatar">{{ review.usuario[0]|upper }}</div>
-                            <span class="username">{{ review.usuario }}</span>
+                            <span class="username">{{ review.usuario|upper }}</span>
                         </div>
                         <div class="rating-badge">
                             <i class="fas fa-star"></i> {{ review.nota }}
                         </div>
                     </div>
-                    <p class="review-body">{{ review.texto }}</p>
+                    <p class="review-body">{{ review.comentario }}</p>
                 </article>
                 {% endfor %}
             {% else %}
