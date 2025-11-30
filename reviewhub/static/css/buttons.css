@@ -20,8 +20,12 @@
         padding: 0.65rem 1.25rem; 
         font-size: 0.85rem; 
     }
-}
 
+    .genre-filter select {
+        font-size: 0.9rem;
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+    }
+}
 
 .movie-btn {
     padding: 0.5rem 1rem;
@@ -31,4 +35,56 @@
 
 .movie-btn:active { 
     transform: scale(0.95); 
+}
+
+.genre-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+
+.genre-filter select {
+    
+    width: 100%;
+    max-width: 350px; 
+    padding: 0.8rem 2.5rem 0.8rem 1rem; 
+    
+    
+    background-color: var(--card); 
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: #374151; 
+    
+    
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3F%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    
+    
+    transition: border-color var(--tp), box-shadow var(--tp);
+}
+
+
+.genre-filter select:hover {
+    border-color: #d1d5db; 
+}
+
+
+.genre-filter select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.08); 
+    outline: none;
 }

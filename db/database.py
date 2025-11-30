@@ -113,3 +113,14 @@ def insert_user(nome, username, senha):
         )
     db.commit()
     
+def get_movies_by_genre(genero):
+    conn = get_db()
+    genero_id = conn.execute("SELECT id FROM Genero WHERE nome = ?", (genero,)).fetchone()
+    cursor = conn.execute("SELECT * FROM Filmes WHERE genero_id = ?", (genero_id[0],))
+    movies = cursor.fetchall()
+
+    return [dict(row) for row in movies]
+
+def get_all_genres():
+    db = get_db()
+    return db.execute("SELECT * FROM Genero ORDER BY nome ASC").fetchall()
