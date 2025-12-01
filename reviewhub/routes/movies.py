@@ -33,6 +33,25 @@ def mine_reviews_page():
     
     return render_template("movies/mine.html", reviews=reviews)
 
+@movies_bp.delete("/<int:id>")
+def remove_review(id):
+    
+    # Para remover avaliações é necessário realizar login.
+    if not session.get('user_id'):
+        flash("Para remover avaliações é necessário realizar login.", "nok")
+        return redirect(url_for('auth.login_page'))
+    
+    reviews = get_reviews_by_user(session.get('user_id'))
+    review = next((r for r in reviews if r['filme_id'] == id), None)
+    if review:
+        delete_review(session.get('user_id'), id)
+        flash("Avaliação removida com sucesso!", "ok")
+    else:
+        flash("Avaliação não encontrada.", "nok")
+    
+    # reviews = get_reviews_by_user(session.get('user_id'))
+    return redirect(url_for("movies.mine_reviews_page"))
+
 
 
 @movies_bp.post("/<int:id>")
