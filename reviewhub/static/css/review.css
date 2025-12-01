@@ -8,7 +8,9 @@
 
 /* =========================================
    1. HERO SECTION (Grid Principal)
-   ========================================= */
+   ========================================= 
+*/
+
 .review-hero {
     display: grid;
     /* Coluna do Poster: 40% da tela (Fixo) | Conteúdo: Restante */
@@ -39,22 +41,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* static/css/review.css */
 
 .poster-container img {
-    /* MUDANÇA AQUI: Substitua width/height 100% por auto e max */
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 100%;
-    
     object-fit: contain;
-    
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
     transition: transform 0.3s ease;
-    
     border-radius: 12px; /* Agora a borda vai colar na imagem */
 }
 
@@ -82,9 +81,11 @@
     color: var(--text-muted);
     font-weight: 500;
 }
+
 /* =========================================
    2. SISTEMA DE ESTRELAS (Simplificado)
-   ========================================= */
+   ========================================= 
+*/
 
 .rating-box {
     background: var(--bg-card);
@@ -134,6 +135,7 @@
     margin: 0;
     padding: 0;
 }
+
 .rating-text {
     font-size: 1rem;
     color: var(--text-muted);
@@ -144,9 +146,8 @@
 
 /* =========================================
    3. FORMULÁRIO & BOTÕES
-   ========================================= */
-
-
+   ========================================= 
+*/
 
 .char-counter {
     text-align: right;
@@ -156,15 +157,11 @@
     font-weight: 500;
 }
 
-
-
-
-
-
-
 /* =========================================
    4. SEÇÃO DE REVIEWS (LISTA)
-   ========================================= */
+   ========================================= 
+*/
+
 .separator {
     position: relative;
     margin: 4rem 5%;
@@ -279,7 +276,9 @@
 
 /* =========================================
    5. RESPONSIVIDADE (Mobile)
-   ========================================= */
+   ========================================= 
+*/
+
 @media (max-width: 900px) {
     .review-hero {
         grid-template-columns: 1fr; /* Empilha tudo em 1 coluna */
@@ -313,6 +312,29 @@
         width: 20px;
         height: 44px;
     }
-    .stars label::before { width: 40px; }
-    .stars label.full::before { left: -20px; }
+    .stars label::before { 
+        width: 40px; 
+    }
+    .stars label.full::before { 
+        left: -20px; 
+    }
+}
+
+#media {
+    margin-top: 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold);            /* amarelo 'star' */
+    background: #1c1c1c;
+    padding: 6px 14px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#media::before {
+    content: "\f005";          /* ícone da estrela */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
 }

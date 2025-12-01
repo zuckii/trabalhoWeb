@@ -113,6 +113,7 @@ def insert_user(nome, username, senha):
         )
     db.commit()
     
+
 def get_movies_by_genre(genero):
     conn = get_db()
     genero_id = conn.execute("SELECT id FROM Genero WHERE nome = ?", (genero,)).fetchone()
@@ -121,9 +122,11 @@ def get_movies_by_genre(genero):
 
     return [dict(row) for row in movies]
 
+
 def get_all_genres():
     db = get_db()
     return db.execute("SELECT * FROM Genero ORDER BY nome ASC").fetchall()
+
 
 def insert_review(usuario_id, filme_id, nota, comentario):
     db = get_db()
@@ -132,6 +135,36 @@ def insert_review(usuario_id, filme_id, nota, comentario):
         VALUES (?, ?, ?, ?)
     """, (usuario_id, filme_id, nota, comentario))
     db.commit()
+
+
+# Lista o nome, nota de todas as avaliações dos usuarios, menos a do usuario proprio
+def get_rating_by_movie(filme_id, user_id):
+    db = get_db()
+    query = db.execute("""
+    
+    SELECT 
+    u.username AS usuario,
+    a.nota,
+    a.comentario
+    FROM Avaliacao a
+    JOIN Usuario u ON u.id = a.usuario_id
+    WHERE a.filme_id = ?
+    AND a.usuario_id != ?;
+    """, (filme_id, user_id)).fetchall()
+
+
+    return [dict(row) for row in query]
+
+def get_movie_rating_average(filme_id):
+    db = get_db()
+    query = db.execute("""
+        SELECT AVG(nota) AS media
+        FROM Avaliacao
+        WHERE filme_id = ?
+    """, (filme_id,)).fetchone()
+
+    return query["media"] if query["media"] is not None else 0
+
 
 def update_review(usuario_id, filme_id, nota, comentario):
     db = get_db()

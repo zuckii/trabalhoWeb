@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, session, flash, request
-from db.database import get_all_movies, get_reviews_by_user, insert_review, delete_review, update_review
+from db.database import get_all_movies, get_reviews_by_user, insert_review, get_rating_by_movie, get_movie_rating_average, delete_review, update_review
 
 movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 
@@ -13,7 +13,7 @@ def details_page(id):
         return redirect(url_for('auth.login_page'))
     
     movies = get_all_movies()
-
+    
     movie = next((m for m in movies if m['id'] == id), None)
 
     review = next((r for r in get_reviews_by_user(session.get('user_id')) if r['filme_id'] == id), None)
@@ -21,7 +21,11 @@ def details_page(id):
     if not movie:
         return "Filme não encontrado", 404
     
-    return render_template("movies/details.html", movie=movie, review=review)
+    user_id = session["user_id"]
+    reviews = get_rating_by_movie(movie['id'], user_id)
+    media_avaliacoes = get_movie_rating_average(id)
+
+    return render_template("movies/details.html", movie=movie, reviews=reviews, media_avaliacoes=media_avaliacoes, review=review)
 
 
 @movies_bp.route("/mine")
