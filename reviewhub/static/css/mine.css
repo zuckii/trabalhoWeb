@@ -1,0 +1,355 @@
+.review-page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    color: var(--text-main);
+    padding-bottom: 5rem;
+    overflow-x: hidden;
+}
+
+/* =========================================
+    1. HERO SECTION (Grid Principal)
+   ========================================= */
+.review-hero {
+    display: grid;
+    /* Coluna do Poster: 40% da tela (Fixo) | Conteúdo: Restante */
+    grid-template-columns: 40% 1fr; 
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+/* --- Coluna do Poster (Esquerda) --- */
+.poster-column {
+    /* Altura fixa para garantir que fique "grandão" */
+    position: sticky;
+    top: 0;
+    
+    /* Centralização */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc; /* Fundo muito sutil para destacar a área */
+    border-right: 1px solid var(--border);
+    padding: 2rem;
+}
+
+.poster-container {
+    height: 100%;
+    display: block;
+    align-items: center;
+    font-size: small;
+    max-width: 5rem;
+}
+
+/* static/css/review.css */
+
+.poster-container img {
+    /* MUDANÇA AQUI: Substitua width/height 100% por auto e max */
+    width: 100px;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    
+    object-fit: contain;
+    
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+    
+    border-radius: 12px; /* Agora a borda vai colar na imagem */
+}
+
+/* --- Coluna de Conteúdo (Direita) --- */
+.content-column {
+    padding-top: 4rem; /* Alinha visualmente com o topo do poster */
+    padding-right: 10%; /* Respiro na direita */
+    max-width: 800px;
+}
+
+.movie-header {
+    margin-bottom: 2rem;
+}
+
+.movie-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.movie-meta {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+/* =========================================
+   2. SISTEMA DE ESTRELAS (Simplificado)
+   ========================================= */
+
+.rating-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.stars {
+    display: flex;
+    gap: 4px; /* Espaço fixo entre as caixas das estrelas */
+    cursor: pointer;
+    /* Garante alinhamento vertical perfeito */
+    align-items: center; 
+    justify-content: center;
+}
+
+.star {
+    /* 1. CAIXA RÍGIDA: Tamanho fixo que nunca muda */
+    width: 56px;  
+    height: 56px;
+    
+    /* 2. CENTRALIZAÇÃO ABSOLUTA: O ícone fica flutuando no meio da caixa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 3. ESTABILIDADE: Impede qualquer mudança de tamanho */
+    flex-shrink: 0;
+    box-sizing: border-box;
+    
+    /* Estilo do Ícone */
+    font-size: 3rem;
+    color: var(--gray-star);
+    
+    /* Apenas a cor muda, nada de transform/scale/padding */
+    transition: color 0.1s ease;
+}
+
+/* Remove qualquer margem ou padding que o navegador possa adicionar ao ícone */
+.star::before {
+    margin: 0;
+    padding: 0;
+}
+.rating-text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* =========================================
+   3. FORMULÁRIO & BOTÕES
+   ========================================= */
+
+
+
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+/* =========================================
+   4. SEÇÃO DE REVIEWS (LISTA)
+   ========================================= */
+.separator {
+    position: relative;
+    margin: 4rem 5%;
+    text-align: center;
+}
+
+.line {
+    height: 1px;
+    background: var(--border);
+    width: 100%;
+}
+
+.icon-box {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fdfdfd; /* Cor aproximada do fundo para mascarar a linha */
+    padding: 0 15px;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.reviews-section {
+    max-width: 900px;
+    /* margin: 0 auto; */
+    padding: 0 20px;
+}
+
+.reviews-section h3 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    border-left: 5px solid var(--primary-btn);
+    padding-left: 1rem;
+    color: var(--text-main);
+}
+
+.reviews-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+    display: flex;
+    max-width: 90vw;
+    width: 90vw;
+}
+
+.review-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #eff6ff;
+    color: var(--primary-btn);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+
+.rating-badge {
+    color: var(--gold);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.review-body {
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    width: 100%;
+    margin: 0 1rem;
+    background-color: var(--bg);
+    overflow: auto;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-style: italic;
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.remove-button {
+    background: #f87171; /* Vermelho claro */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.edit-button {
+    background: var(--primary-btn);
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.text-error {
+    color: #dc2626 !important; /* Vermelho forte */
+    font-weight: 800 !important;
+    animation: shake 0.4s ease-in-out; /* Opcional: faz o texto tremer */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* =========================================
+   5. RESPONSIVIDADE (Mobile)
+   ========================================= */
+@media (max-width: 900px) {
+    .review-hero {
+        grid-template-columns: 1fr; /* Empilha tudo em 1 coluna */
+        gap: 0;
+    }
+
+    .poster-column {
+        height: auto;
+        position: static; /* Remove o sticky no mobile */
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 2rem 1rem;
+        background: #f9fafb;
+    }
+
+    .poster-container img {
+        max-height: 400px; /* Limita altura no celular */
+    }
+
+    .content-column {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+    }
+
+    .movie-title {
+        font-size: 2rem;
+    }
+
+    .stars label {
+        font-size: 2.5rem; /* Estrelas um pouco menores no celular */
+        width: 20px;
+        height: 44px;
+    }
+    .stars label::before { width: 40px; }
+    .stars label.full::before { left: -20px; }
+}
