@@ -26,7 +26,9 @@
             <nav>
                 <ul>
                     {% if session.get('user_id') %}
-                        <li class="nav-username">{{ session.get('username') }}</li>
+                        <li class="nav-username">
+                            <a class="username" href="{{ url_for('movies.mine_reviews_page') }}">{{ session.get('username') }}</a>
+                        </li>
                         <li><a href="{{ url_for('auth.logout') }}" class="btn">Sair</a></li>
 
                     {% elif session.get('guest_mode') %}

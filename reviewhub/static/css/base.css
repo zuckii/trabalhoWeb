@@ -98,6 +98,11 @@ p {
     color: var(--text-main);
 }
 
+nav ul li.nav-username a {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
 .user-info {
     display: flex;
     align-items: center;

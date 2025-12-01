@@ -106,18 +106,19 @@
 }
 
 .site-nav .nav-username {
-    /* Layout Flex para alinhar o emoji e o texto */
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* Espaço entre o emoji e o nome */
-    
-    /* Tipografia Minimalista */
+    gap: 0.5rem;
+
+    background-color: #f3f4f6; /* Fundo cinza suave */
+    color: var(--text-main, #333);
+    border: 1px solid var(--border, #e5e7eb);
+
+    padding: 0.4rem 1rem;
+    border-radius: 50px; /* Borda bem redonda */
     font-weight: 600;
-    color: var(--text-main, #374151); /* Cor escura suave */
-    font-size: 0.95rem;
-    
-    /* Espaçamento */
-    margin-right: 0.75rem; /* Dá um espaço antes do botão "Sair" */
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
 }
 
 /* O Emoji de Utilizador */
@@ -129,7 +130,9 @@
 
 /* Esconder em ecrãs muito pequenos (telemóveis) para não quebrar o menu */
 @media (max-width: 480px) {
-    .site-nav .nav-username {
-        display: none; 
+    .site-nav nav ul {
+        display: grid;
+        row-gap: 10px;
+        text-align: center;
     }
 }
