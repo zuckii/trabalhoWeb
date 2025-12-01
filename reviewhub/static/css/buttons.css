@@ -10,7 +10,7 @@
     transition: background var(--tp), transform var(--tp);
 }
 
-#sair{
+#sair {
     margin-top: 0.35rem;
 }
 
