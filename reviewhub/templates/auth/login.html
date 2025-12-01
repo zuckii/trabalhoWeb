@@ -5,7 +5,7 @@
 {% block content %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <div class="auth-container">
+    <section class="auth-container">
         <h1 class="title-from">Review<span>Hub</span></h1>
         <form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
             <input name="username" required placeholder="Username">
@@ -29,11 +29,11 @@
             <button type="submit" class="btn">Entrar</button>
         </form>
         
-        <div class="auth-links">
+        <article class="auth-links">
             <p>Ainda não tem uma conta? <a href="{{ url_for('auth.register_page') }}">Registre-se</a></p>
             <p>Ou <a href="{{ url_for('auth.guest_login') }}" class="guest-link">entre como convidado</a></p>
-        </div>
-    </div>
+        </article>
+    </section>
     
     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}

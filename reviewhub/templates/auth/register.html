@@ -4,7 +4,7 @@
 
 {% block content %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <div class="auth-container">
+    <section class="auth-container">
         <h1>Criar Conta</h1>
         <form method="POST" action="{{ url_for('auth.register_page') }}" class="auth-form">
             <input name="name" required placeholder="Nome">
@@ -28,9 +28,9 @@
 
             <button type="submit" class="btn">Criar Conta</button>
         </form>
-        <div class="auth-links">
+        <article class="auth-links">
             <p>Já tem uma conta? <a href="{{ url_for('auth.login_page') }}">Faça login</a></p>
-        </div>
-    </div>
+        </article>
+    </section>
     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}

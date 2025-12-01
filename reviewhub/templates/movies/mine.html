@@ -6,10 +6,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/mine.css') }}">
 
-<div class="review-page-wrapper">
+<section class="review-page-wrapper">
 
-    <div class="reviews-section">
+    <article class="reviews-section">
+
         <h2>Minhas Avaliações</h2>
+
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
                 <ul class="flash-messages">
@@ -19,62 +21,60 @@
                 </ul>
             {% endif %}
         {% endwith %}
+        
         <div class="reviews-grid">
             {% if reviews %}
                 {% for review in reviews %}
-                <article class="review-card">
-                    <div class="poster-container">
-                        <img src="{{ review.filme_imagem }}" alt="Poster {{ review.filme_nome }}">
-                        <div class="card-header">
-                            <div class="user-info">
-                                <span class="username">{{ review.filme_nome }}</span>
+
+                    <article class="review-card">
+                        <section class="poster-container">
+                            
+                            <figure>
+                                <img src="{{ review.filme_imagem }}" alt="Poster {{ review.filme_nome }}">
+                            </figure>
+
+                            <div class="card-header">
+                                
+                                <div class="user-info">
+                                    <span class="username">{{ review.filme_nome }}</span>
+                                </div>
+
+                                <div class="rating-badge">
+                                    <i class="fas fa-star"></i> {{ review.nota }}
+                                </div>
+
                             </div>
-                            <div class="rating-badge">
-                                <i class="fas fa-star"></i> {{ review.nota }}
+
+                            <div class="botoes">
+                                
+                                <button class="edit-button btn" onclick="window.location.href = '/movies/{{ review.filme_id }}'">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button class="remove-button btn" onclick="fetch('/movies/{{ review.filme_id }}', {method: 'DELETE'}).then(() => location.reload())">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+
                             </div>
-                        </div>
-                        <div class="botoes">
-                            <button class="edit-button btn" onclick="window.location.href = '/movies/{{ review.filme_id }}'">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="remove-button btn" onclick="fetch('/movies/{{ review.filme_id }}', {method: 'DELETE'}).then(() => location.reload())">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <p class="review-body">{{ review.comentario }}</p>
-                </article>
+                            
+                        </section>
+                        
+                        <section class="review-body">
+                            <p>{{ review.comentario }}</p>
+                        </section>
+
+                    </article>
+
                 {% endfor %}
+
             {% else %}
                 <p class="empty-msg">Nenhuma avaliação ainda.</p>
             {% endif %}
+
         </div>
-    </div>
-</div>
+    </article>
+</section>
 
 <script src="{{ url_for('static', filename='js/review.js') }}"></script>
 
-<script>
-    function deleteReview(filmId) {
-        if (confirm('Tem certeza que deseja deletar esta avaliação?')) {
-            fetch(`/movies/${filmId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    alert('Erro ao deletar a avaliação');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao deletar a avaliação');
-            });
-        }
-    }
-</script>
 {% endblock %}

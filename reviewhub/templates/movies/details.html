@@ -6,17 +6,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/review.css') }}">
 
-<div class="review-page-wrapper">
-    <div class="review-hero">
+<section class="review-page-wrapper">
+    <article class="review-hero">
         
-        <div class="poster-column">
+        <article class="poster-column">
             <div class="poster-container">
-                <img src="{{ movie.imagem }}" alt="Poster {{ movie.nome }}">
+                
+                <figure>
+                    <img src="{{ movie.imagem }}" alt="Poster {{ movie.nome }}">
+                </figure>
+
                 <p id="media">{{ "%.2f"|format(media_avaliacoes) }}</p>
             </div>
-        </div>
+        </article>
 
-        <div class="content-column">
+        <article class="content-column">
             <header class="movie-header">
                 <h1 class="movie-title">{{ movie.nome }}</h1>
                 <span class="movie-meta">Qual sua nota para este filme?</span>
@@ -46,8 +50,8 @@
                         maxlength="1000" 
                         required
                     >{% if review %}{{ review.comentario }}{% endif %}</textarea>
-                <div id="char-counter" class="char-counter">{% if review %}{{ review.texto|length }}{% else %}0{% endif %} / 1000</div>
-            </div>
+                    <div id="char-counter" class="char-counter">{% if review %}{{ review.texto|length }}{% else %}0{% endif %} / 1000</div>
+                </div>
 
                 <div class="action-bar">
                     <button type="submit" class="btn-submit">
@@ -56,38 +60,39 @@
                     <a href="{{ url_for('home.homepage') }}" class="btn-cancel">Cancelar</a>
                 </div>
             </form>
-        </div>
-    </div>
+        </article>
+    </article>
 
-    <div class="separator">
+    <article class="separator">
         <div class="line"></div>
         <div class="icon-box"><i class="fas fa-comment-dots"></i></div>
-    </div>
+    </article>
 
-    <div class="reviews-section">
-        <h3>Avaliações da Comunidade</h3>
-        
-        <div class="reviews-grid">
-            {% if reviews %}
-                {% for review in reviews %}
-                <article class="review-card">
-                    <div class="card-header">
-                        <div class="user-info">
-                            <span class="username">{{ review.usuario|upper }}</span>
-                        </div>
-                        <div class="rating-badge">
-                            <i class="fas fa-star"></i> {{ review.nota }}
-                        </div>
+</section>
+
+<section class="reviews-section">
+    <h3>Avaliações da Comunidade</h3>
+    
+    <article class="reviews-grid"> 
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card">
+                <header class="card-header">
+                    <div class="user-info">
+                        <span class="username">{{ review.usuario|upper }}</span>
                     </div>
-                    <p class="review-body">{{ review.comentario }}</p>
-                </article>
-                {% endfor %}
-            {% else %}
-                <p class="empty-msg">Nenhuma avaliação ainda. Seja o primeiro!</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
+                    <div class="rating-badge">
+                        <i class="fas fa-star"></i> {{ review.nota }}
+                    </div>
+                </header>
+                <p class="review-body">{{ review.comentario }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-msg">Nenhuma avaliação ainda. Seja o primeiro!</p>
+        {% endif %}
+    </article>
+</section>
 
 <script src="{{ url_for('static', filename='js/review.js') }}"></script>
 {% endblock %}

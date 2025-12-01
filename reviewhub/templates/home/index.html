@@ -5,20 +5,21 @@
 {% block content %}
 
 
-
-<form method="get" class="genre-filter">
-    <select name="genero" onchange="this.form.submit()">
-        <option value="">Todos os gêneros</option>
-        
-        {% for genero in generos %}
-        <option value="{{ genero['nome'] }}"
-        {% if selected_genero == genero['nome'] %}selected{% endif %}>
-        {{ genero['nome'] }}
-    </option>
-    {% endfor %}
-</select>
-</form>
-<p id="subtitle-movie">Selecione um filme para avaliar</p>
+<article class="text-center">
+    <form method="get" class="genre-filter">
+        <select name="genero" onchange="this.form.submit()">
+            <option value="">Todos os gêneros</option>
+            
+            {% for genero in generos %}
+            <option value="{{ genero['nome'] }}"
+            {% if selected_genero == genero['nome'] %}selected{% endif %}>
+            {{ genero['nome'] }}
+        </option>
+        {% endfor %}
+    </select>
+    </form>
+    <p id="subtitle-movie">Selecione um filme para avaliar</p>
+</article>
 
 {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
@@ -30,14 +31,16 @@
     {% endif %}
 {% endwith %}
 
-<div class="movies-grid">
+<section class="movies-grid">
     {% for movie in movies %}
     <a href="{{ url_for('movies.details_page', id=movie.id) }}" class="movie-card">
-        <div class="movie-poster">
-            <img src="{{ movie.imagem }}" alt="{{ movie.nome }}" loading="lazy">
+        <article class="movie-poster">
+            <figure>
+                <img src="{{ movie.imagem }}" alt="{{ movie.nome }}" loading="lazy">
+            </figure>
             <div class="movie-overlay"></div>
-        </div>
+        </article>
     </a>
     {% endfor %}
-</div>
+</section>
 {% endblock %}

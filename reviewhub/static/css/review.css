@@ -2,7 +2,6 @@
     width: 100%;
     min-height: 100vh;
     color: var(--text-main);
-    padding-bottom: 5rem;
     overflow-x: hidden;
 }
 
@@ -186,9 +185,10 @@
 }
 
 .reviews-section {
-    max-width: 900px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 6vw;
 }
 
 .reviews-section h3 {

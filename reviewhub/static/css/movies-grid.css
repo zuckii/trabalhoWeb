@@ -101,3 +101,7 @@ main {
 #subtitle-movie{
     margin: auto;
 }
+
+figure {
+    margin: 0;
+}
