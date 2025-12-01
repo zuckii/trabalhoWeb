@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, session, flash, request
-from db.database import get_all_movies, insert_review
+from db.database import get_all_movies, get_reviews_by_user, insert_review, delete_review, update_review
 
 movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 
@@ -16,10 +16,13 @@ def details_page(id):
 
     movie = next((m for m in movies if m['id'] == id), None)
 
+    review = next((r for r in get_reviews_by_user(session.get('user_id')) if r['filme_id'] == id), None)
+
     if not movie:
         return "Filme não encontrado", 404
     
-    return render_template("movies/details.html", movie=movie)
+    return render_template("movies/details.html", movie=movie, review=review)
+
 
 @movies_bp.route("/mine")
 def mine_reviews_page():
