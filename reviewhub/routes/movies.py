@@ -3,24 +3,24 @@ from db.database import get_all_movies, get_reviews_by_user, insert_review, get_
 
 movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 
+
 @movies_bp.route("/<int:id>")
 def details_page(id):
-    
-    # A pagina details necessita de login.
-    # Nem guest mode pode acessar a página details 
+
     if not session.get('user_id'):
         flash("Para avaliar é necessário realizar login.", "nok")
         return redirect(url_for('auth.login_page'))
-    
+
     movies = get_all_movies()
-    
+
     movie = next((m for m in movies if m['id'] == id), None)
 
-    review = next((r for r in get_reviews_by_user(session.get('user_id')) if r['filme_id'] == id), None)
+    review = next((r for r in get_reviews_by_user(
+        session.get('user_id')) if r['filme_id'] == id), None)
 
     if not movie:
         return "Filme não encontrado", 404
-    
+
     user_id = session["user_id"]
     reviews = get_rating_by_movie(movie['id'], user_id)
     media_avaliacoes = get_movie_rating_average(id)
@@ -30,24 +30,23 @@ def details_page(id):
 
 @movies_bp.route("/mine")
 def mine_reviews_page():
-    
-    # A pagina de listagem de avaliações necessita de login.
+
     if not session.get('user_id'):
         flash("Para listar suas avaliações é necessário realizar login.", "nok")
         return redirect(url_for('auth.login_page'))
-    
+
     reviews = get_reviews_by_user(session.get('user_id'))
-    
+
     return render_template("movies/mine.html", reviews=reviews)
+
 
 @movies_bp.delete("/<int:id>")
 def remove_review(id):
-    
-    # Para remover avaliações é necessário realizar login.
+
     if not session.get('user_id'):
         flash("Para remover avaliações é necessário realizar login.", "nok")
         return redirect(url_for('auth.login_page'))
-    
+
     reviews = get_reviews_by_user(session.get('user_id'))
     review = next((r for r in reviews if r['filme_id'] == id), None)
     if review:
@@ -55,10 +54,8 @@ def remove_review(id):
         flash("Avaliação removida com sucesso!", "ok")
     else:
         flash("Avaliação não encontrada.", "nok")
-    
-    # reviews = get_reviews_by_user(session.get('user_id'))
-    return redirect(url_for("movies.mine_reviews_page"))
 
+    return redirect(url_for("movies.mine_reviews_page"))
 
 
 @movies_bp.post("/<int:id>")
@@ -84,11 +81,11 @@ def details(id):
 @movies_bp.post("/update/<int:id>")
 def update_review_route(id):
     user_id = session.get("user_id")
-    
+
     if not user_id:
         flash("Para atualizar avaliações é necessário realizar login.", "nok")
         return redirect(url_for('auth.login_page'))
-    
+
     nota = float(request.form.get("rating"))
     comentario = request.form.get("review")
 

@@ -18,11 +18,11 @@
             
             {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
-            <ul class="flash-messages">
-                {% for msg in messages %}
-                <li class="{{msg[0]}}">{{ msg[1] }}</li>
-                {% endfor %}
-            </ul>
+                <ul class="flash-messages">
+                    {% for msg in messages %}
+                    <li class="{{msg[0]}}">{{ msg[1] }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
             {% endwith %}
             

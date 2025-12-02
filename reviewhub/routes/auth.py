@@ -4,6 +4,7 @@ from reviewhub.utils.security import *
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
+
 @auth_bp.route("/login")
 def login_page():
     return render_template("auth/login.html")
@@ -18,7 +19,7 @@ def login():
     if not username or not senha:
         flash("Preencha todos os campos.", "nok")
         return redirect(url_for("auth.login_page"))
-    
+
     if user is None:
         flash("Usuário não encontrado.", "nok")
         return redirect(url_for("auth.login_page"))
@@ -62,7 +63,6 @@ def register():
     return redirect(url_for("auth.login_page"))
 
 
-
 @auth_bp.route("/guest")
 def guest_login():
     session['guest_mode'] = True
@@ -71,7 +71,6 @@ def guest_login():
 
 @auth_bp.route("/logout")
 def logout():
-    # clear user session and redirect to login
     session.pop("user_id", None)
     session.pop("user_nome", None)
     session.pop("username", None)

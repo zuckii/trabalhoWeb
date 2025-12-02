@@ -11,10 +11,10 @@
             <option value="">Todos os gêneros</option>
             
             {% for genero in generos %}
-            <option value="{{ genero['nome'] }}"
-            {% if selected_genero == genero['nome'] %}selected{% endif %}>
-            {{ genero['nome'] }}
-        </option>
+                <option value="{{ genero['nome'] }}"
+                    {% if selected_genero == genero['nome'] %}selected{% endif %}>
+                    {{ genero['nome'] }}
+                </option>
         {% endfor %}
     </select>
     </form>
@@ -26,7 +26,7 @@
         <ul class="flash-messages">
             {% for msg in messages %}
                 <li class="{{msg[0]}}">{{ msg[1] }}</li>
-                {% endfor %}
+            {% endfor %}
         </ul>
     {% endif %}
 {% endwith %}
