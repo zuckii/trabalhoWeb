@@ -17,7 +17,7 @@
     margin-bottom: 4rem;
 }
 
-/* --- Coluna do Poster (Esquerda) --- */
+
 .poster-column {
     position: sticky;
     top: 0;
@@ -51,7 +51,6 @@
     border-radius: 12px; 
 }
 
-/* --- Coluna de Conteúdo (Direita) --- */
 .content-column {
     padding-top: 4rem; 
     padding-right: 10%; 
@@ -77,7 +76,7 @@
 }
 
 /* 
-   2. SISTEMA DE ESTRELAS (Simplificado)
+   2. SISTEMA DE ESTRELAS
 */
 
 .rating-box {

@@ -56,7 +56,6 @@ def remove_review(id):
     else:
         flash("Avaliação não encontrada.", "nok")
     
-    # reviews = get_reviews_by_user(session.get('user_id'))
     return redirect(url_for("movies.mine_reviews_page"))
 
 

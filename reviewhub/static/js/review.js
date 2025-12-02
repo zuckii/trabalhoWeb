@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Se houver um review existente, carregar os valores
     if (isEditMode) {
-        // A nota está no ratingText (vindo do template)
+        // Carregar a nota existente
         const ratingValue = parseFloat(ratingText.textContent);
         if (!isNaN(ratingValue) && ratingValue > 0) {
             currentRating = ratingValue;
             hiddenInput.value = currentRating;
             updateStarsVisual(currentRating);
-            // Manter o texto da nota visível
+            // Atualiza o texto da nota
             ratingText.style.color = '#eab308';
             ratingText.style.fontWeight = 'bold';
         }
