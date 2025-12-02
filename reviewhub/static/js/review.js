@@ -1,7 +1,5 @@
-/* static/js/review.js */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Elementos ---
+    // Elementos principais
     const stars = document.querySelectorAll('.star');
     const starContainer = document.getElementById('star-container');
     const hiddenInput = document.getElementById('rating-input');
@@ -13,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentRating = 0;
 
-    // =================================================================
-    // 0. DETECTAR SE É MODO EDIÇÃO E INICIALIZAR
-    // =================================================================
     const isEditMode = textarea.value.trim().length > 0;
 
     // Se houver um review existente, carregar os valores
@@ -31,17 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ratingText.style.fontWeight = 'bold';
         }
     }
-
-    // =================================================================
-    // 1. LÓGICA DAS ESTRELAS
-    // =================================================================
+    // Eventos para cada estrela
     stars.forEach((star) => {
-        // Mouse Move
+        // Passar o mouse
         star.addEventListener('mousemove', (e) => {
             const rect = star.getBoundingClientRect();
             const width = rect.width;
             const x = e.clientX - rect.left;
-            
+    
             const isHalf = x < (width / 2);
             const starValue = parseInt(star.getAttribute('data-value'));
             
@@ -49,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStarsVisual(tempRating);
         });
 
-        // Clique
+        // Clicar na estrela
         star.addEventListener('click', (e) => {
             const rect = star.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -59,25 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRating = isHalf ? starValue - 0.5 : starValue;
             
             hiddenInput.value = currentRating;
-            updateRatingText(currentRating); // Atualiza texto e remove erro
+            updateRatingText(currentRating);
         });
     });
-
+    // Ao sair do container das estrelas, restaurar a visualização da nota selecionada
     if (starContainer) {
         starContainer.addEventListener('mouseleave', () => {
             updateStarsVisual(currentRating);
         });
     }
-
-    // =================================================================
-    // 2. CONTADOR DE CARACTERES
-    // =================================================================
+    // Contador de caracteres do textarea
     if (textarea && counter) {
+        // Inicializa o contador
         textarea.addEventListener('input', function() {
             const currentLength = this.value.length;
             const maxLength = 1000;
             counter.textContent = `${currentLength} / ${maxLength}`;
-            
+            // Muda a cor se atingir o limite
             if (currentLength >= maxLength) {
                 counter.style.color = 'red';
             } else {
@@ -85,10 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // =================================================================
-    // 3. VALIDAÇÃO DO FORMULÁRIO (COM REINÍCIO DE ANIMAÇÃO)
-    // =================================================================
+    // Validação do formulário
     if (form) {
         form.addEventListener('submit', function(e) {
             const ratingValue = parseFloat(hiddenInput.value);
@@ -96,60 +83,55 @@ document.addEventListener('DOMContentLoaded', () => {
             // Se a nota for inválida (0 ou menor que 0.5)
             if (!ratingValue || ratingValue < 0.5) {
                 e.preventDefault(); // Bloqueia envio
-
-                // --- MUDANÇA AQUI: Reiniciar a animação ---
                 
-                // 1. Remove a classe se ela já existir
+                // Remove a classe de erro para reiniciar a animação
                 ratingText.classList.remove('text-error');
 
-                // 2. Força um "reflow" (uma atualização de layout rápida do navegador).
-                // Apenas ler uma propriedade de dimensão, como offsetWidth, força isso.
-                // O 'void' é apenas para descartar o valor retornado, não afeta a lógica.
+                // Força o reflow para reiniciar a animação
                 void ratingText.offsetWidth; 
 
-                // 3. Re-adiciona a classe para disparar a animação novamente
+                // Adiciona a classe de erro
                 ratingText.textContent = "Por favor, selecione uma nota!";
                 ratingText.classList.add('text-error');
                 
                 // Rola a tela para garantir visualização
                 ratingText.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else if (isEditMode) {
-                // Se for edição, submeter para rota /update/<id>
+                // Em modo de edição, ajustar a ação do formulário
                 e.preventDefault();
-                
+                // Extrai o ID do filme da URL
                 const movieId = window.location.pathname.split('/').pop();
                 form.action = `/movies/update/${movieId}`;
                 form.submit();
             }
-            // Se não for edição, deixa fazer POST normal para /movies/<id>
+            
         });
     }
-
-    // =================================================================
-    // 4. FUNÇÕES AUXILIARES
-    // =================================================================
+    // Atualiza as classes CSS das estrelas (cheia, meia, vazia) baseada na nota
     function updateStarsVisual(rating) {
         stars.forEach((star, index) => {
             const starValue = index + 1;
             star.classList.remove('fa-solid', 'fa-star-half-stroke', 'fa-regular');
-            
+            // Estrela cheia
             if (rating >= starValue) {
                 star.classList.add('fa-solid', 'fa-star');
                 star.style.color = 'var(--gold)';
+            // Meia estrela
             } else if (rating >= starValue - 0.5) {
                 star.classList.add('fa-solid', 'fa-star-half-stroke');
                 star.style.color = 'var(--gold)';
+            // Estrela vazia
             } else {
                 star.classList.add('fa-regular', 'fa-star');
                 star.style.color = 'var(--gray-star)';
             }
         });
     }
-
+    // Atualiza o texto da nota exibida
     function updateRatingText(rating) {
         // Remove a classe de erro ao selecionar uma nota válida
         ratingText.classList.remove('text-error');
-
+        // Atualiza o texto e estilo
         if (rating > 0) {
             ratingText.textContent = rating.toFixed(1);
             ratingText.style.color = '#eab308';

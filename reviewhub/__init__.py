@@ -27,7 +27,6 @@ def create_app():
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     
-    # Make request available in all templates
     @app.context_processor
     def inject_request():
         return {'request': request}

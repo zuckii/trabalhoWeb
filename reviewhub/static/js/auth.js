@@ -1,6 +1,6 @@
 const input = document.getElementById("senha");
 const btn = document.getElementsByClassName("toggle-btn")[0];
-
+// Alterna a visibilidade da senha ao clicar no botão
 btn.addEventListener("click", () => {
     if (input.type === "password") {
         input.type = "text";
